@@ -1,0 +1,140 @@
+@mixin image($size) {
+  width: $size;
+  margin-top: 6px;
+  margin-right: 6px;
+}
+
+@mixin button-display($display) {
+  display: $display;
+}
+
+@mixin action-button-mixin($background, $color, $display) {
+  background: $background;
+  color: $color;
+  margin-left: 10px;
+  border-radius: 50%;
+  @include button-display($display);
+}
+
+@mixin form-button-mixin($background, $color) {
+  background: $background;
+  color: $color !important;
+  margin-left: 10px;
+  border: 1px solid #000000;
+}
+
+.file-img {
+  @include image(16px);
+  vertical-align: middle;
+}
+
+.folder-img {
+  @include image(24px);
+  vertical-align: bottom;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.mat-button {
+  width: 30px;
+  height: 30px;
+  min-width: 24px;
+  padding: 0px;
+  line-height: 10px;
+}
+
+#node-input:focus {
+  outline: none;
+  border: solid #ffd800;
+}
+
+.node-div {
+  display: inline-table;
+  margin-bottom: 10px;
+  padding: 6px;
+  border-radius: 5px;
+
+  span {
+    vertical-align: bottom;
+  }
+
+  &:hover {
+    border: solid 1px;
+
+    button {
+      @include button-display(inline-block);
+    }
+  }
+}
+
+.action-button-add {
+  @include action-button-mixin(#000000, #ffffff, none);
+}
+
+.action-button-delete {
+  @include action-button-mixin(#f5f5f5, #000000, none);
+}
+
+.form-button-add {
+  @include form-button-mixin(#000000, #ffffff);
+}
+
+.form-button-reset {
+  @include form-button-mixin(#f5f5f5, #000000);
+}
+
+.list-padding {
+  padding-inline-start: 0px;
+}
+
+.form-div {
+  border: solid 1px;
+  margin: 6px;
+  display: inline-flex;
+
+  form {
+    margin: 6px;
+    display: table;
+  }
+
+  input {
+    margin: 2px;
+  }
+
+  #form-file-img {
+    vertical-align: text-bottom;
+  }
+}
+
+li {
+  box-sizing: border-box;
+}
+
+li:not(.root-li) > div > ul {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: "";
+    background: transparent;
+    height: 1.75em;
+    width: 1.25em;
+    left: 1.25em;
+    border-bottom: 1px solid #808080;
+    border-left: 1px solid #808080;
+  }
+
+  &:not(:last-child) {
+    &::after {
+      position: absolute;
+      content: "";
+      background: transparent;
+      top: 1.75em;
+      left: 1.25em;
+      height: calc(100% - 1.75em);
+      border-left: 1px solid #808080;
+    }
+  }
+}
